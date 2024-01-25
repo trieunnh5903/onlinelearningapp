@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
 } from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES} from '../constants';
@@ -12,6 +11,9 @@ const CategoryCard = ({category, containerStyle}) => {
   return (
     <TouchableOpacity activeOpacity={0.8}>
       <ImageBackground
+        imageStyle={{
+          borderRadius: SIZES.radius,
+        }}
         source={category?.thumbnail}
         resizeMode="cover"
         style={[styles.card, containerStyle]}>
@@ -32,6 +34,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: SIZES.radius,
     paddingVertical: SIZES.padding,
     justifyContent: 'flex-end',
-    borderRadius: SIZES.radius,
   },
 });

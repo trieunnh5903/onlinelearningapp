@@ -20,7 +20,9 @@ import {
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {FlatList} from 'react-native-gesture-handler';
+import {useSelector} from 'react-redux';
 const HomeScreen = ({navigation}) => {
+  const appTheme = useSelector(state => state.app.appTheme);
   const offset = useRef(0);
   const oldCondition = useRef(null);
   const hideTabBar = () => {
@@ -46,12 +48,18 @@ const HomeScreen = ({navigation}) => {
         hideTabBar();
       }
     }
-
     oldCondition.current = condition;
   };
   return (
-    <SafeAreaView style={globalStyle.container}>
+    <SafeAreaView
+      style={[
+        globalStyle.container,
+        {backgroundColor: appTheme.backgroundColor1},
+      ]}>
       <FlatList
+        // contentContainerStyle={{
+        //   paddingBottom: 70,
+        // }}
         overScrollMode="never"
         onScroll={onScroll}
         showsVerticalScrollIndicator={false}
@@ -91,6 +99,7 @@ const HomeScreen = ({navigation}) => {
 };
 
 const Category = () => {
+  const appTheme = useSelector(state => state.app.appTheme);
   return (
     <Section title={'Categories'}>
       <FlatList
@@ -121,10 +130,14 @@ const Category = () => {
 };
 
 const Section = ({containerStyle, title, onPress, children}) => {
+  const appTheme = useSelector(state => state.app.appTheme);
+
   return (
     <View style={{...containerStyle}}>
       <View style={styles.section}>
-        <Text style={{flex: 1, ...FONTS.h2, color: COLORS.black}}>{title}</Text>
+        <Text style={{flex: 1, ...FONTS.h2, color: appTheme.textColor}}>
+          {title}
+        </Text>
         <ButtonText style={styles.seeAll} label={'See All'} onPress={onPress} />
       </View>
       {children}
@@ -165,16 +178,24 @@ const StartLearning = () => {
   );
 };
 const MyHeader = () => {
+  const appTheme = useSelector(state => state.app.appTheme);
+
   return (
     <View style={styles.header}>
       <View>
-        <Text style={[FONTS.h2, {color: COLORS.black}]}>Hello, User!</Text>
-        <Text style={[FONTS.body4, {color: COLORS.gray40}]}>
+        <Text style={[FONTS.h2, {color: appTheme.textColor}]}>
+          Hello, User!
+        </Text>
+        <Text style={[FONTS.body4, {color: appTheme.textColor3}]}>
           Thursday, 9th Sep 2021
         </Text>
       </View>
       <Pressable>
-        <Ionicons name="notifications-outline" color={COLORS.black} size={30} />
+        <Ionicons
+          name="notifications-outline"
+          color={appTheme.textColor}
+          size={30}
+        />
       </Pressable>
     </View>
   );

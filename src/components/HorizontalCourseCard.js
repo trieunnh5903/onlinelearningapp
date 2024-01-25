@@ -3,8 +3,11 @@ import React from 'react';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {COLORS, FONTS, SIZES, icons} from '../constants';
 import {MaterialIcons} from './Icon';
+import {useSelector} from 'react-redux';
 
 const HorizontalCourseCard = ({containerStyle, course}) => {
+  const appTheme = useSelector(state => state.app.appTheme);
+
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -30,7 +33,9 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
       </ImageBackground>
 
       <View style={{flex: 1, marginLeft: SIZES.base}}>
-        <Text style={styles.title}>{course.title}</Text>
+        <Text style={[styles.title, {color: appTheme.textColor}]}>
+          {course.title}
+        </Text>
 
         <View style={styles.author}>
           <Text style={{color: COLORS.gray30, ...FONTS.body4}}>
@@ -49,7 +54,7 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
 
           <View style={styles.ratingWrapper}>
             <Image source={icons.star} style={styles.icon} />
-            <Text style={[styles.subText, {color: COLORS.black}]}>
+            <Text style={[styles.subText, {color: appTheme.textColor}]}>
               {course.ratings}
             </Text>
           </View>

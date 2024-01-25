@@ -2,8 +2,10 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS, SIZES, icons} from '../constants';
 import {MaterialIcons} from './Icon';
+import {useSelector} from 'react-redux';
 
 const VerticalCourseCard = ({style, course}) => {
+  const appTheme = useSelector(state => state.app.appTheme);
   return (
     <TouchableOpacity activeOpacity={0.8} style={style}>
       <Image source={course.thumbnail} style={styles.image} />
@@ -12,7 +14,9 @@ const VerticalCourseCard = ({style, course}) => {
           <Image source={icons.play} resizeMode="contain" style={styles.icon} />
         </View>
         <View style={{flex: 1}}>
-          <Text numberOfLines={2} style={styles.text}>
+          <Text
+            numberOfLines={2}
+            style={[styles.text, {color: appTheme.textColor}]}>
             {course.title}
           </Text>
           <View style={styles.duration}>

@@ -1,7 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {darkTheme, lightTheme} from '../../constants';
 
 const initialState = {
   tabBarVisible: true,
+  appTheme: lightTheme,
 };
 
 export const appSlice = createSlice({
@@ -11,10 +13,18 @@ export const appSlice = createSlice({
     changeTabBarVisible: (state, action) => {
       state.tabBarVisible = action.payload;
     },
+
+    changeTheme: (state, action) => {
+      const themeKey = action.payload;
+      if (themeKey === lightTheme.name) {
+        state.appTheme = lightTheme;
+      } else {
+        state.appTheme = darkTheme;
+      }
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const {changeTabBarVisible} = appSlice.actions;
+export const {changeTabBarVisible, changeTheme} = appSlice.actions;
 
 export default appSlice.reducer;

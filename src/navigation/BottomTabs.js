@@ -8,10 +8,13 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {useSelector} from 'react-redux';
 const Tab = createBottomTabNavigator();
 
 function MyTabBar({state, descriptors, navigation}) {
+  const appTheme = useSelector(s => s.app.appTheme);
   const opacity = useSharedValue(1);
+  const scale = useSharedValue(1);
   const TAB_WIDTH = (SIZES.width - 32) / 3;
   const offset = useSharedValue(0);
   const animatedStyles = useAnimatedStyle(() => ({
@@ -19,19 +22,33 @@ function MyTabBar({state, descriptors, navigation}) {
   }));
   const focusedOptions = descriptors[state.routes[state.index].key].options;
   if (focusedOptions?.tabBarStyle?.display === 'none') {
-    opacity.value = withTiming(0);
+    opacity.value = withTiming(0, undefined, finished => {
+      if (finished) {
+        scale.value = withTiming(0);
+      }
+    });
   } else {
-    opacity.value = withTiming(1);
+    scale.value = withTiming(1, undefined, finished => {
+      if (finished) {
+        opacity.value = withTiming(1);
+      }
+    });
   }
 
   const tabBarAnimatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
+      transform: [{scale: scale.value}],
     };
   });
 
   return (
-    <Animated.View style={[styles.tabBar, tabBarAnimatedStyle]}>
+    <Animated.View
+      style={[
+        styles.tabBar,
+        {backgroundColor: appTheme.backgroundColor2},
+        tabBarAnimatedStyle,
+      ]}>
       <Animated.View
         style={[{width: TAB_WIDTH}, styles.greenBox, animatedStyles]}
       />
