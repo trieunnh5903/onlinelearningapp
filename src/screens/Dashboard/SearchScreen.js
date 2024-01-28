@@ -12,6 +12,7 @@ import {FlatList, TextInput} from 'react-native-gesture-handler';
 import {ButtonText, CategoryCard} from '../../components';
 import {Image} from 'react-native-animatable';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 
 const SearchScreen = ({navigation}) => {
   const appTheme = useSelector(s => s.app.appTheme);
@@ -140,7 +141,7 @@ const TopSearches = () => {
 
 const BrowerCategories = () => {
   const appTheme = useSelector(s => s.app.appTheme);
-
+  const navigation = useNavigation();
   return (
     <View style={{marginTop: SIZES.padding}}>
       <Text
@@ -162,6 +163,13 @@ const BrowerCategories = () => {
         }}
         renderItem={({item, index}) => (
           <CategoryCard
+            sharedElementPrefix={'Search'}
+            onPress={() =>
+              navigation.navigate('CourseListing', {
+                category: item,
+                sharedElementPrefix: 'Search',
+              })
+            }
             category={item}
             containerStyle={{
               width: (SIZES.width - SIZES.padding * 2 - SIZES.radius) / 2,

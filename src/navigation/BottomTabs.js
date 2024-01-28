@@ -9,6 +9,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import {useSelector} from 'react-redux';
+import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 const Tab = createBottomTabNavigator();
 
 function MyTabBar({state, descriptors, navigation}) {
@@ -130,15 +131,33 @@ const BottomTabs = () => {
         headerShown: false,
       }}>
       <Tab.Screen
-        component={HomeScreen}
+        component={HomeStackScreen}
         name="Home"
         initialParams={{showTabBar: true}}
       />
-      <Tab.Screen component={SearchScreen} name="Search" />
+      <Tab.Screen component={SearchStackScreen} name="Search" />
       <Tab.Screen component={ProfileScreen} name="Profile" />
     </Tab.Navigator>
   );
 };
+
+const HomeStack = createSharedElementStackNavigator();
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator screenOptions={{headerShown: false}}>
+      <HomeStack.Screen name="HomeScreen" component={HomeScreen} />
+    </HomeStack.Navigator>
+  );
+}
+
+const SearchStack = createSharedElementStackNavigator();
+function SearchStackScreen() {
+  return (
+    <SearchStack.Navigator screenOptions={{headerShown: false}}>
+      <SearchStack.Screen name="SearchScreen" component={SearchScreen} />
+    </SearchStack.Navigator>
+  );
+}
 
 export default BottomTabs;
 

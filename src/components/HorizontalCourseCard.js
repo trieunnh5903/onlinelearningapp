@@ -7,7 +7,9 @@ import {useSelector} from 'react-redux';
 
 const HorizontalCourseCard = ({containerStyle, course}) => {
   const appTheme = useSelector(state => state.app.appTheme);
-
+  const tintColor = course?.is_favourite
+    ? COLORS.secondary
+    : COLORS.additionalColor4;
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -15,7 +17,7 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
       <ImageBackground
         source={course.thumbnail}
         resizeMode="cover"
-        style={{width: 130, aspectRatio: 1, marginBottom: SIZES.radius}}
+        style={{width: 130, aspectRatio: 1}}
         imageStyle={{borderRadius: SIZES.radius}}>
         <View style={styles.favoriteWrapper}>
           <Image
@@ -24,9 +26,7 @@ const HorizontalCourseCard = ({containerStyle, course}) => {
             style={{
               width: 20,
               height: 20,
-              tintColor: course?.is_favourite
-                ? COLORS.secondary
-                : COLORS.additionalColor4,
+              tintColor,
             }}
           />
         </View>

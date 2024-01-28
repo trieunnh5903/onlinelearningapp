@@ -7,7 +7,9 @@ import HorizontalCourseCard from './HorizontalCourseCard';
 import ProgressBar from './ProgressBar';
 import ProfileValue from './ProfileValue';
 import ProfileRadioButton from './ProfileRadioButton';
+import TwoPointSlider from './TwoPointSlider';
 export {
+  TwoPointSlider,
   ProfileRadioButton,
   ProfileValue,
   ProgressBar,

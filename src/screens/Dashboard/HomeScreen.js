@@ -21,6 +21,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {FlatList} from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 const HomeScreen = ({navigation}) => {
   const appTheme = useSelector(state => state.app.appTheme);
   const offset = useRef(0);
@@ -41,6 +42,7 @@ const HomeScreen = ({navigation}) => {
     const dif = currentOffset - (offset.current || 0);
     offset.current = currentOffset;
     const condition = currentOffset < 100 || dif < 0;
+
     if (oldCondition.current !== condition) {
       if (condition) {
         showTabBar();
@@ -57,9 +59,6 @@ const HomeScreen = ({navigation}) => {
         {backgroundColor: appTheme.backgroundColor1},
       ]}>
       <FlatList
-        // contentContainerStyle={{
-        //   paddingBottom: 70,
-        // }}
         overScrollMode="never"
         onScroll={onScroll}
         showsVerticalScrollIndicator={false}
@@ -99,7 +98,7 @@ const HomeScreen = ({navigation}) => {
 };
 
 const Category = () => {
-  const appTheme = useSelector(state => state.app.appTheme);
+  const naigation = useNavigation();
   return (
     <Section title={'Categories'}>
       <FlatList
@@ -114,10 +113,16 @@ const Category = () => {
         renderItem={({item, index}) => {
           return (
             <CategoryCard
+              sharedElementPrefix={'Home'}
+              onPress={() =>
+                naigation.navigate('CourseListing', {
+                  category: item,
+                  sharedElementPrefix: 'Home',
+                })
+              }
               category={item}
               containerStyle={{
                 marginLeft: index === 0 ? SIZES.padding : SIZES.base,
-                padding: SIZES.base,
                 marginRight:
                   index === dummyData.categories.length - 1 ? SIZES.padding : 0,
               }}

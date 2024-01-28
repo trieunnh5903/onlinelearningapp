@@ -1,11 +1,12 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const ButtonIcon = ({source, iconStyle, iconColor, onPress}) => {
+const ButtonIcon = ({source, iconStyle, iconColor, style, onPress}) => {
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity style={style} onPress={onPress}>
       <Image
         source={source}
+        resizeMode="contain"
         style={[styles.icon, iconStyle]}
         tintColor={iconColor}
       />
