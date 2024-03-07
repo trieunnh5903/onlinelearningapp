@@ -269,7 +269,7 @@ const CourseList = ({scrollY, onFilterPress}) => {
     scrollY.value = e.contentOffset.y;
   });
   const appTheme = useSelector(state => state.app.appTheme);
-
+  const navigation = useNavigation();
   return (
     <Animated.FlatList
       onScroll={onScroll}
@@ -294,6 +294,9 @@ const CourseList = ({scrollY, onFilterPress}) => {
               marginVertical: SIZES.padding,
               marginTop,
             }}
+            onPress={() =>
+              navigation.navigate('CourseDetail', {selectedCourse: item})
+            }
           />
         );
       }}

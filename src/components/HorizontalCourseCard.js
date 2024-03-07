@@ -5,13 +5,14 @@ import {COLORS, FONTS, SIZES, icons} from '../constants';
 import {MaterialIcons} from './Icon';
 import {useSelector} from 'react-redux';
 
-const HorizontalCourseCard = ({containerStyle, course}) => {
+const HorizontalCourseCard = ({containerStyle, onPress, course}) => {
   const appTheme = useSelector(state => state.app.appTheme);
   const tintColor = course?.is_favourite
     ? COLORS.secondary
     : COLORS.additionalColor4;
   return (
     <TouchableOpacity
+      onPress={onPress}
       activeOpacity={1}
       style={{flexDirection: 'row', ...containerStyle}}>
       <ImageBackground

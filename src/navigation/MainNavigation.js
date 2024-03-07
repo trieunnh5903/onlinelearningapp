@@ -2,7 +2,7 @@ import {Easing, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createSharedElementStackNavigator} from 'react-navigation-shared-element';
 import BottomTabs from './BottomTabs';
-import CourseListingScreen from '../screens/Course/CourseListingScreen';
+import {CourseDetailScreen, CourseListingScreen} from '../screens';
 
 const Stack = createSharedElementStackNavigator();
 const MainNavigation = () => {
@@ -13,10 +13,19 @@ const MainNavigation = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="BottomTabs" component={BottomTabs} />
+      <Stack.Screen name="CourseDetail" component={CourseDetailScreen} />
       <Stack.Screen
         name="CourseListing"
         component={CourseListingScreen}
         sharedElements={(route, otherRoute, showing) => {
+          // if (
+          //   otherRoute.name === 'SearchScreen' ||
+          //   otherRoute.name === 'BottomTabs' ||
+          //   otherRoute.name === 'HomeScreen'
+          // ) {
+          //   const {category, sharedElementPrefix} = route.params;
+          //   return [`${sharedElementPrefix}-cardImage-${category?.id}`];
+          // }
           const {category, sharedElementPrefix} = route.params;
           return [`${sharedElementPrefix}-cardImage-${category?.id}`];
         }}

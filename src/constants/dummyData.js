@@ -415,6 +415,8 @@ const notificationByDays = [
   },
 ];
 
+const sample_video_url =
+  'https://rr1---sn-npoldn7d.googlevideo.com/videoplayback?expire=1706516072&ei=Bwq3ZYKsOuew0-kPiOeN0AU&ip=123.20.146.160&id=o-ADAaJdOr9WpWaZ07TWxSRtJuBn1qqoc7SVTnCK89BALV&itag=136&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313&source=youtube&requiressl=yes&xpc=EgVo2aDSNQ%3D%3D&pcm2=no&siu=1&spc=UWF9f8PfYpmcUjzsLvhKqSswZsWthwfiPSRWqhvjmNRVTC7rhBaL2aVl80H_&vprv=1&svpuc=1&mime=video%2Fmp4&ns=G3eXcfncXx3GcWiRLjlLOj0Q&gir=yes&clen=28387248&dur=165.932&lmt=1687926638819084&keepalive=yes&fexp=24007246,24350017&beids=24350017&c=WEB&txp=6319224&n=qMqAY9OMqwF44A&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cxpc%2Cpcm2%2Csiu%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&sig=AJfQdSswRQIhANlTLzJY_W8doHHi63bAlF18A93B5uLfK_8zLKrH96lwAiAtGr1uxKKTDJyHNQiALpQJ4-tIgkBgKWLdcIWvQ_kD4w%3D%3D&pot=Ih_hFuEXhKHrGtAn0SXTLtgh0ibVJNcn1iHVL9ck1Gqd&cm2rm=sn-8qj-nbosz7d,sn-i3bk77z&req_id=c4f270e847ada3ee&ipbypass=yes&redirect_counter=2&cms_redirect=yes&cmsv=e&mh=04&mm=34&mn=sn-npoldn7d&ms=ltu&mt=1706493551&mv=u&mvi=1&pl=23&lsparams=ipbypass,mh,mm,mn,ms,mv,mvi,pl&lsig=AAO5W4owRQIgC4QtelJWXcJNaKRZEfKat2OSk0x63z7f0ptX5LUov5sCIQCKvHcWz8kvCwBA63in9puE2icRTyidw8cZjGHb6hzpGw%3D%3D';
 export default {
   categories,
   courses_list_1,
@@ -422,4 +424,5 @@ export default {
   top_searches,
   course_details,
   notificationByDays,
+  sample_video_url,
 };
